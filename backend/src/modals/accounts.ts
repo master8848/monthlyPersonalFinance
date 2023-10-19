@@ -1,22 +1,20 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, Unique } from "typeorm";
 
 @Entity()
-export class Photo {
+@Unique(["uuid"])
+export class Accounts {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  name: string;
+  @Column({ name: "uuid" })
+  uuid: string;
 
   @Column()
-  description: string;
+  BankLeft: number;
 
   @Column()
-  filename: string;
+  CashLeft: number;
 
-  @Column()
-  views: number;
-
-  @Column()
-  isPublished: boolean;
+  @Column("varchar", { length: 214748364 })
+  expenses: string;
 }

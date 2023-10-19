@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { Photo } from "../modals/accounts";
+import { Accounts } from "../modals/accounts";
 
 const AppDataSource = new DataSource({
   type: "postgres",
@@ -9,7 +9,7 @@ const AppDataSource = new DataSource({
   username: "postgres",
   password: "187569",
   database: "test",
-  entities: [Photo],
+  entities: [Accounts],
   synchronize: true,
   logging: false,
 });
