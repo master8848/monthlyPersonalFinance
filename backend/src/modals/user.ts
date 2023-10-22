@@ -1,20 +1,27 @@
-// const mongoose = require("mongoose");
-// const validator = require("validator");
-// const bcrypt = require("bcryptjs");
-// const jwt = require("jsonwebtoken");
-// const crypto = require("crypto");
-// const { stringify } = require("querystring");
-
-import mongoose from "mongoose";
+import mongoose, { Document } from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import { validateEmail } from "../utils/EmailValidation";
-export enum Roles {
+export enum UserRoles {
   ADMIN = "ADMIN",
   USER = "USER",
 }
-const userSchema = new mongoose.Schema(
+export interface IUser extends Document {
+  name: string;
+  email: string;
+  password: string;
+  role: UserRoles;
+  bank: number;
+  cash: number;
+  investment: number;
+  resetPasswordToken: string;
+  resetPasswordExpire: Date;
+  getJWTToken: () => string;
+  comparePassword: (pass: string) => boolean;
+  getResetPasswordToken: () => string;
+}
+const userSchema = new mongoose.Schema<IUser>(
   {
     name: {
       type: String,
@@ -38,20 +45,10 @@ const userSchema = new mongoose.Schema(
       minLength: [8, "Password should be greater than 8 characters"],
       select: false,
     },
-    avatar: {
-      public_id: {
-        type: String,
-        required: true,
-      },
-      url: {
-        type: String,
-        required: true,
-      },
-    },
     role: {
       type: String,
-      enum: Roles,
-      default: Roles.ADMIN,
+      enum: UserRoles,
+      default: UserRoles.ADMIN,
     },
     bank: {
       type: Number,
@@ -61,6 +58,11 @@ const userSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    investment: {
+      type: Number,
+      default: 0,
+    },
+
     resetPasswordToken: String,
     resetPasswordExpire: Date,
   },

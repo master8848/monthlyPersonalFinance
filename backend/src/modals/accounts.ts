@@ -17,6 +17,9 @@ const AccountsSchema = new mongoose.Schema(
     CashLeft: {
       type: Number,
     },
+    Investment: {
+      type: Number,
+    },
 
     //   @OneToMany(() => Expenses, (articleEntity) => articleEntity.account)
     //   @JoinColumn()

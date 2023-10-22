@@ -33,6 +33,7 @@ const ErrorHander = (err, req, res, next) => {
   });
 };
 export class ErrorHandlerClass extends Error {
+  statusCode: number | undefined;
   constructor(message, statusCode) {
     super(message);
     this.statusCode = statusCode;
