@@ -1,20 +1,30 @@
-import { Entity, Column, PrimaryGeneratedColumn, Unique } from "typeorm";
+import mongoose from "mongoose";
 
-@Entity()
-@Unique(["uuid"])
-export class Accounts {
-  @PrimaryGeneratedColumn()
-  id: number;
+const AccountsSchema = new mongoose.Schema(
+  {
+    uuid: {
+      type: String,
+      unique: true,
+    },
+    month: {
+      type: Date,
+    },
 
-  @Column({ name: "uuid" })
-  uuid: string;
+    BankLeft: {
+      type: Number,
+    },
 
-  @Column()
-  BankLeft: number;
+    CashLeft: {
+      type: Number,
+    },
 
-  @Column()
-  CashLeft: number;
-
-  @Column("varchar", { length: 214748364 })
-  expenses: string;
-}
+    //   @OneToMany(() => Expenses, (articleEntity) => articleEntity.account)
+    //   @JoinColumn()
+    //   expenses: Expenses;
+  },
+  {
+    timestamps: true,
+  }
+);
+export default AccountsSchema;
+export const Accounts = mongoose.model("Accounts", AccountsSchema);
