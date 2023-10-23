@@ -6,6 +6,9 @@ import { Users } from "../modals/user";
 
 export default async function monthlyAddData(req, res) {
   req.body.user = req.user._id.toString();
+  req.body.BankLeft = +req.body.BankLeft;
+  req.body.CashLeft = +req.body.CashLeft;
+  req.body.Investment = +req.body.Investment;
   await Users.findByIdAndUpdate(req.body.user, {
     bank: req.body.BankLeft,
     cash: req.body.CashLeft,
@@ -24,6 +27,6 @@ export default async function monthlyAddData(req, res) {
     { new: true }
   );
   if (!account) account = await new Accounts(req.body);
-  res.send(account.save?.());
+  res.send(account.save?.() ?? account);
   // res.send({});
 }

@@ -5,6 +5,7 @@ import express from "express"; // let path = require('path');
 // let logger = require("morgan");
 import logger from "morgan";
 import dotenv from "dotenv";
+import cors from "cors";
 // let indexRouter = require("./routes/monthly");
 // let usersRouter = require("./routes/users");
 import indexRouter from "./routes/monthly";
@@ -13,6 +14,8 @@ import { ConnectToDatbase } from "./bin/database";
 dotenv.config();
 let app = express();
 let port = normalizePort(process.env.PORT || "8080");
+
+app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
