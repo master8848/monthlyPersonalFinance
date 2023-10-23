@@ -10,7 +10,6 @@ const AccountsSchema = new mongoose.Schema(
     uuid: {
       type: String,
       unique: true,
-      default: UUIDGenerator,
     },
     month: {
       type: Date,

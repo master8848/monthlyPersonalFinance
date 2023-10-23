@@ -11,6 +11,7 @@ import cors from "cors";
 import indexRouter from "./routes/monthly";
 import usersRouter from "./routes/users";
 import { ConnectToDatbase } from "./bin/database";
+import ErrorHander from "./middleware/error";
 dotenv.config();
 let app = express();
 let port = normalizePort(process.env.PORT || "8080");
@@ -35,6 +36,7 @@ app.use(express.urlencoded({ extended: false }));
 // });
 app.use("/api/v1/monthly", indexRouter);
 app.use("/users", usersRouter);
+app.use(ErrorHander);
 ConnectToDatbase().then((c) => {
   app.listen(port, () => {
     console.log("listening posrt at http://localhost:" + port);

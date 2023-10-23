@@ -3,12 +3,14 @@ import mongoose from "mongoose";
 import { Accounts } from "../modals/accounts";
 import moment from "moment";
 import { Users } from "../modals/user";
+import UUIDGenerator from "../utils/UUID";
 
 export default async function monthlyAddData(req, res) {
   req.body.user = req.user._id.toString();
   req.body.BankLeft = +req.body.BankLeft;
   req.body.CashLeft = +req.body.CashLeft;
   req.body.Investment = +req.body.Investment;
+  req.body.uuid = UUIDGenerator();
   await Users.findByIdAndUpdate(req.body.user, {
     bank: req.body.BankLeft,
     cash: req.body.CashLeft,
@@ -26,7 +28,7 @@ export default async function monthlyAddData(req, res) {
     req.body,
     { new: true }
   );
-  if (!account) account = await new Accounts(req.body);
-  res.send(account.save?.() ?? account);
+  if (!account) account = await (await new Accounts(req.body)).save();
+  res.send(account);
   // res.send({});
 }
