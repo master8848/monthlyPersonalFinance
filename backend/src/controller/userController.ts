@@ -1,12 +1,5 @@
-// const ErrorHander = require("../utils/errorhandler");
-// const catchAsyncErrors = require("../middleware/catchAsyncErrors");
-// const User = require("../models/userModel");
-// const sendToken = require("../utils/jwtToken");
-// const sendEmail = require("../utils/sendEmail");
-// const crypto = require("crypto");
-
 import catchAsyncErrors from "../middleware/catchAsyncErrors";
-import ErrorHander, { ErrorHandlerClass } from "../middleware/error";
+import { ErrorHandlerClass } from "../middleware/error";
 import { Users } from "../modals/user";
 import { sendToken } from "../utils/jwtToken";
 import { sendEmail } from "../utils/sendEmail";

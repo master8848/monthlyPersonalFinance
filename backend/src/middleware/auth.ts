@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import { Users } from "../modals/user";
 import catchAsyncErrors from "./catchAsyncErrors";
-import ErrorHander, { ErrorHandlerClass } from "./error";
+import { ErrorHandlerClass } from "./error";
 
 export const isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
   const token = (
@@ -12,7 +12,7 @@ export const isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
 
   if (!token) {
     return next(
-      new ErrorHander("Please Login to access this resource", req, res, next)
+      new ErrorHandlerClass("Please Login to access this resource", 401)
     );
   }
 
