@@ -7,7 +7,6 @@ import { Button } from "./components/ui/button";
 
 function App() {
   const [jwt, setJwt] = useCookie("jwt", "");
-  const [tokenRefetch, setTokenRefetch] = useState(1);
   useEffect(() => {
     if (!jwt) {
       (async () => {
@@ -18,11 +17,17 @@ function App() {
         setJwt(data.token);
       })();
     }
-  }, [tokenRefetch]);
+  }, [jwt]);
 
   return (
     <div className="mt-9">
-      <Button onClick={() => setTokenRefetch((c) => ++c)}>Refresh Token</Button>
+      <Button
+        onClick={() => {
+          setJwt("");
+        }}
+      >
+        Refresh Token
+      </Button>
       <MonthlyDataForm />
     </div>
   );
