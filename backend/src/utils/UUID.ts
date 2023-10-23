@@ -1,6 +1,9 @@
 import { v5 as uuidv5 } from "uuid";
-
+const MY_NAMESPACE = [
+  0x6b, 0x75, 0x6d, 0x61, 0x72, 0x2d, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61,
+  0x63, 0x65, 0x2d,
+];
 const UUIDGenerator = (customString = "14b90817") => {
-  return uuidv5(customString, process.env.MY_NAMESPACE);
+  return uuidv5(customString, MY_NAMESPACE);
 };
 export default UUIDGenerator;

@@ -9,6 +9,7 @@ import catchAsyncErrors from "../middleware/catchAsyncErrors";
 import ErrorHander, { ErrorHandlerClass } from "../middleware/error";
 import { Users } from "../modals/user";
 import { sendToken } from "../utils/jwtToken";
+import { sendEmail } from "../utils/sendEmail";
 import crypto from "crypto";
 
 // Register a User

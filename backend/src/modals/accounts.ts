@@ -1,10 +1,16 @@
 import mongoose from "mongoose";
+import UUIDGenerator from "../utils/UUID";
 
 const AccountsSchema = new mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
     uuid: {
       type: String,
       unique: true,
+      default: UUIDGenerator,
     },
     month: {
       type: Date,

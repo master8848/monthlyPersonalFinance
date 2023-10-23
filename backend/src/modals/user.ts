@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import { validateEmail } from "../utils/EmailValidation";
+
 export enum UserRoles {
   ADMIN = "ADMIN",
   USER = "USER",
