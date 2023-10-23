@@ -31,7 +31,7 @@ const MonthlyDataForm = () => {
     <div className="w-screen flex  justify-center align-middle">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-5 mt-9 max-w-5xl "
+        className="flex flex-col gap-5 mt-5 max-w-5xl "
       >
         <Label htmlFor="form_BankLeft"> Ammount in bank</Label>
         <Input
